@@ -26,6 +26,7 @@ public void run() throws IOException{
         draw();
         KeyStroke key = screen.readInput();
         processKey(key);
+        if(key.getKeyType() == KeyType.EOF) break;
     }
 }
 private void processKey(KeyStroke key){
@@ -34,7 +35,11 @@ private void processKey(KeyStroke key){
     if(key.getKeyType() == KeyType.ArrowDown) y += 1;
     if(key.getKeyType() == KeyType.ArrowRight) x += 1;
     if(key.getKeyType() == KeyType.ArrowLeft) x -= 1;
-
+    if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){ try{
+        screen.close();
+    }
+    catch (IOException e) {e.printStackTrace();}
+    }
 
 }
 public Game() throws IOException{
