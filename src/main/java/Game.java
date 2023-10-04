@@ -13,8 +13,7 @@ import java.io.IOException;
 
 public class Game {
 private Screen screen;
-private int x=10;
-private int y=10;
+private Hero hero = new Hero(10,10);
 private void draw() throws IOException{
     screen.clear();
     screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
