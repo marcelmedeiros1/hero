@@ -18,7 +18,9 @@ public class Hero {
         this.x = x;
         this.y = y;
     }
-
+public void draw(Screen screen) throws IOException{
+     screen.setCharacter(x, y, TextCharacter.fromCharacter('H')[0]);
+}
     public int getY() {
         return y;
     }

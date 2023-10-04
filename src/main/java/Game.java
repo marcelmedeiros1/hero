@@ -16,7 +16,7 @@ private Screen screen;
 private Hero hero = new Hero(10,10);
 private void draw() throws IOException{
     screen.clear();
-    screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
+    hero.draw(screen);
     screen.refresh();
 }
 
@@ -30,10 +30,10 @@ public void run() throws IOException{
 }
 private void processKey(KeyStroke key){
     System.out.println(key);
-    if(key.getKeyType() == KeyType.ArrowUp) y -= 1;
-    if(key.getKeyType() == KeyType.ArrowDown) y += 1;
-    if(key.getKeyType() == KeyType.ArrowRight) x += 1;
-    if(key.getKeyType() == KeyType.ArrowLeft) x -= 1;
+    if(key.getKeyType() == KeyType.ArrowUp) hero.setY(hero.getY()-1);
+    if(key.getKeyType() == KeyType.ArrowDown) hero.setY(hero.getY()+1);
+    if(key.getKeyType() == KeyType.ArrowRight) hero.setX(hero.getX()+1);
+    if(key.getKeyType() == KeyType.ArrowLeft) hero.setX(hero.getX()-1);
     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){ try{
         screen.close();
     }
