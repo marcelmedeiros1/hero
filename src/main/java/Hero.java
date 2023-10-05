@@ -12,25 +12,20 @@ import java.io.IOException;
 
 
 public class Hero {
-    private int x;
-    private int y;
-    public Hero(int x, int y){
-        this.x = x;
-        this.y = y;
+    private Position position;
+    public Hero(Position position){
+        this.position.setX(position.getX());
+        this.position.setY(position.getY());
     }
 public void draw(Screen screen) throws IOException{
-     screen.setCharacter(x, y, TextCharacter.fromCharacter('H')[0]);
+     screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter('H')[0]);
 }
     public int getY() {
-        return y;
+        return position.getY();
     }
-    public void setY(int y) {
-        this.y = y;
-    }
-    public int getX() {
-        return x;
-    }
+    public void setY(int y) {position.setY(y);}
+    public int getX() {return position.getX();}
     public void setX(int x) {
-        this.x = x;
+        position.setX(x);
     }
 }
