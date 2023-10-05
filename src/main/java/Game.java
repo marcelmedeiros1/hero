@@ -10,10 +10,10 @@ import java.io.IOException;
 
 public class Game {
 private Screen screen;
-private Hero hero = new Hero(new Position(10,10));
+private Arena arena = new Arena(40,20);
 private void draw() throws IOException{
     screen.clear();
-    hero.draw(screen);
+    arena.draw(screen);
     screen.refresh();
 }
 
@@ -25,20 +25,13 @@ public void run() throws IOException{
         if(key.getKeyType() == KeyType.EOF) break;
     }
 }
-private void moveHero(Position position){
-    hero.setPosition(position);
-}
 private void processKey(KeyStroke key){
-    System.out.println(key);
-    if(key.getKeyType() == KeyType.ArrowUp) moveHero(hero.moveUp());
-    if(key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
-    if(key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
-    if(key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
     if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){ try{
-        screen.close();
-    }
+        screen.close();}
     catch (IOException e) {e.printStackTrace();}
     }
+    arena.processKey(key);
+
 }
 public Game() throws IOException{
     try {

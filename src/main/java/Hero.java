@@ -4,7 +4,7 @@ import com.googlecode.lanterna.screen.Screen;
 
 
 public class Hero {
-    private Position position = new Position(10,10);
+    private Position position = new Position(20,10);
     public Hero(Position position){
         this.position.setX(position.getX());
         this.position.setY(position.getY());
@@ -29,4 +29,3 @@ public void draw(Screen screen){
         this.position = position;
     }
 }
-
