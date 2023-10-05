@@ -1,23 +1,15 @@
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 
-import javax.swing.*;
-import java.io.IOException;
 
 
 public class Hero {
-    private Position position;
+    private Position position = new Position(10,10);
     public Hero(Position position){
         this.position.setX(position.getX());
         this.position.setY(position.getY());
     }
-public void draw(Screen screen) throws IOException{
+public void draw(Screen screen){
      screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter('H')[0]);
 }
     public int getY() {
@@ -28,4 +20,13 @@ public void draw(Screen screen) throws IOException{
     public void setX(int x) {
         position.setX(x);
     }
+    public Position moveUp(){ return new Position(position.getX(), position.getY()-1); }
+    public Position moveDown(){ return new Position(position.getX(), position.getY()+1); }
+    public Position moveLeft(){ return new Position(position.getX()-1, position.getY()); }
+    public Position moveRight(){ return new Position(position.getX()+1, position.getY()); }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
+

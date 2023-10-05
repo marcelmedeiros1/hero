@@ -1,18 +1,11 @@
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
 
-import javax.swing.*;
-import java.io.IOException;
 public class Position {
 private int x;
 private int y;
-
+public Position(int x, int y){
+this.x = x;
+this.y = y;
+}
     public int getX() {
         return x;
     }
