@@ -5,6 +5,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Text;
 
@@ -18,6 +20,7 @@ public class Arena {
         this.width=width;
         this.height=height;
         this.hero = new Hero(new Position(10,10));
+        this.walls = createWalls();
     }
     public void processKey(KeyStroke key){
         System.out.println(key);
@@ -28,8 +31,11 @@ public class Arena {
     }
     public void draw(TextGraphics graphics){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width+1, height+1), ' ');
+        graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         hero.draw(graphics);
+        for(Wall wall : walls){
+            wall.draw(graphics);
+        }
     }
     public void moveHero(Position position){
         if(canHeroMove(position)){
@@ -37,7 +43,19 @@ public class Arena {
         }
     }
     public boolean canHeroMove(Position position){
-        if((position.getX() <= width && position.getX()>=0) && (position.getY() <= height && position.getY()>=0)) return true;
+        if((position.getX() < width-1 && position.getX()>0) && (position.getY() < height-1 && position.getY()>0)) return true;
         return false;
+    }
+    private List<Wall> createWalls() {
+        List<Wall> walls = new ArrayList<>();
+        for (int c = 0; c < width; c++) {
+            walls.add(new Wall(c, 0));
+            walls.add(new Wall(c, height - 1));
+        }
+        for (int r = 1; r < height - 1; r++) {
+            walls.add(new Wall(0, r));
+            walls.add(new Wall(width - 1, r));
+        }
+        return walls;
     }
 }
