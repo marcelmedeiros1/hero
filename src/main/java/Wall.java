@@ -15,8 +15,10 @@ public Wall(int x, int y){
 public void draw(TextGraphics graphics){
     TextCharacter wallCharacter = new TextCharacter('#', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK);
     graphics.setCharacter(x, y, wallCharacter);
-
-
+}
+public Position getPosition(){
+    Position position = new Position(this.x, this.y);
+    return position;
 }
 
     public int getX() {
