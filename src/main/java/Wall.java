@@ -10,7 +10,7 @@ public Wall(int x, int y){
     super(x,y);
 }
 public void draw(TextGraphics graphics){
-    TextCharacter wallCharacter = new TextCharacter('#', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK);
+    TextCharacter wallCharacter = new TextCharacter('#', TextColor.ANSI.BLACK, TextColor.Factory.fromString("#336699"));
     graphics.setCharacter(getPosition().getX(), getPosition().getY(), wallCharacter);
 }
 
