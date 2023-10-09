@@ -1,6 +1,5 @@
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.TerminalPosition;
@@ -8,7 +7,7 @@ import com.googlecode.lanterna.TerminalSize;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.w3c.dom.Text;
+
 
 public class Arena {
     private int width;
@@ -19,7 +18,7 @@ public class Arena {
     public Arena(int width, int height){
         this.width=width;
         this.height=height;
-        this.hero = new Hero(new Position(10,10));
+        this.hero = new Hero(10,10);
         this.walls = createWalls();
     }
     public void processKey(KeyStroke key){
@@ -38,9 +37,8 @@ public class Arena {
         }
     }
     public void moveHero(Position position){
-        if(canHeroMove(position)){
-            hero.setPosition(position);
-        }
+        if(canHeroMove(position)) hero.setPosition(position);
+
     }
     public boolean canHeroMove(Position position){
         for(Wall wall : walls){

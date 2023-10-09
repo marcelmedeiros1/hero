@@ -5,36 +5,14 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.TextCharacter;
 
 import java.util.List;
-public class Wall {
-private int x;
-private int y;
+public class Wall extends Element {
 public Wall(int x, int y){
-    this.x = x;
-    this.y = y;
+    super(x,y);
 }
 public void draw(TextGraphics graphics){
     TextCharacter wallCharacter = new TextCharacter('#', TextColor.ANSI.WHITE, TextColor.ANSI.BLACK);
-    graphics.setCharacter(x, y, wallCharacter);
-}
-public Position getPosition(){
-    Position position = new Position(this.x, this.y);
-    return position;
+    graphics.setCharacter(getPosition().getX(), getPosition().getY(), wallCharacter);
 }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 }
 
