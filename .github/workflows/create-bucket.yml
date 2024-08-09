@@ -1,0 +1,45 @@
+name: Generate Bucket YAML
+
+on:
+  workflow_dispatch:
+    inputs:
+      bucket_name:
+        description: 'Name of the GCP Bucket'
+        required: true
+      bucket_location:
+        description: 'Location of the GCP Bucket'
+        required: true
+        default: 'EU'
+
+jobs:
+  generate-bucket-yaml:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Generate Bucket YAML
+      run: |
+        mkdir -p tools
+        cat <<EOF > tools/${{ github.event.inputs.bucket_name }}.yaml
+        apiVersion: storage.gcp.upbound.io/v1beta1
+        kind: Bucket
+        metadata:
+          name: ${{ github.event.inputs.bucket_name }}
+          labels:
+            docs.crossplane.io/example: provider-gcp
+        spec:
+          forProvider:
+            location: ${{ github.event.inputs.bucket_location }}
+          providerConfigRef:
+            name: default
+        EOF
+    
+    - name: Commit and Push YAML
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add tools/${{ github.event.inputs.bucket_name }}.yaml
+        git commit -m "Add ${ { github.event.inputs.bucket_name } }.yaml"
+        git push
